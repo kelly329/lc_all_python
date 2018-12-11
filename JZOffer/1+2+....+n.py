@@ -9,3 +9,9 @@ class Solution:
         # write code here
         return sum(list(range(1,n+1)))
 
+
+
+    def Sum(self, n):
+        # write code here
+        # and的话在n == 0 的时候就直接短路返回0了，就结束递归了
+        return n and (n + self.Sum(n-1))
