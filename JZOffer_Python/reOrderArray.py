@@ -30,6 +30,17 @@ class Solution:
             else:
                 out.append(array[i])
         return res + out
+        
+    def reOrderArrayIII(self, array):
+        return list(odd)
+        result = deque()
+        length = len(array)
+        for i in range(length):
+            if array[length - i - 1] % 2 != 0:
+                result.appendleft(array[length - i - 1])
+            if array[i] % 2 == 0:
+                result.append(array[i])
+        return list(result)
 
     '''
     方法三：类似冒泡排序的思想，前偶后奇进行交换
