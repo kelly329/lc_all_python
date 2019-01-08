@@ -32,6 +32,16 @@ class Solution:
         str1str2 = int(str1 + str2)
         str2str1 = int(str2 + str1)
         return 1 if str1str2 > str2str1 else -1
-
+# -*- coding:utf-8 -*-
+class Solution:
+    def PrintMinNumber(self, numbers):
+        if not numbers or len(numbers) <= 0:
+            return ''
+        
+        compares = lambda x, y : cmp(str(x) + str(y), str(y) + str(x))
+        min_string = sorted(numbers, cmp = compares)
+        return ''.join(str(s) for s in min_string)
+s = Solution()
+print(s.PrintMinNumber([3, 32, 321]))
 s = Solution()
 print s.PrintMinNumber([3,4,2,123,456,12,11,27])
