@@ -33,6 +33,10 @@ b[1] = b[1] * temp = a[0] * a[4] * a[3] * a[2];
 temp *= a[1] = a[4] * a[3] * a[2] * a[1];
 b[0] = b[0] * temp = a[4] * a[3] * a[2] * a[1];
 
+
+运行时间：28ms
+
+占用内存：5732k
 '''
 class Solution:
     def multiply(self, A):
