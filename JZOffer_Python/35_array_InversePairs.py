@@ -1,50 +1,51 @@
-#!/usr/bin/python
-
-运行时间：3798ms
-
-占用内存：23144k
-
-在每次程序进入26行时，此时的data是最新的排序结果，copy是次新的结果。
-	在最后一次进入26行以后时，copy为完整排序后的结果，data是次新的结果。
-	然而这里第一个类内函数调用第二个函数时，data和copy的顺序没有改变，所以最后结果应该copy是完整排序的结果.data是差一步完成排序的结果。以输入[7,5,6,4], 最后的结果copy[4,5,6,7], data[5,7,4,6].
-	
-000000007 是最小的十位质数。模1000000007，可以保证值永远在int的范围内。
-	
 class Solution:
 	def InversePairs(self, data):
 		if not data:
 			return 0
 		copy = [i for i in data]
-		return self.InverseCore(copy, data, 0, len(data) - 1) % 1000000007 
-	def InverseCore(self, copy, data, start, end):
-		if start >= end:
-			copy[start] = data[start]
+		return self.InversePairsCore(data, copy, 0, len(data) - 1) 	% 100000007	
+	def InversePairsCore(self, copy, data, start, end):
+		if(start >= end):
+			copy[start] == data[start]
 			return 0
-		mid = (start + end) / 2
-		left = self.InverseCore(data, copy, start, mid)
-		right = self.InverseCore(data, copy, mid + 1,end)
+		
+		mid = (end + start) // 2
+		left = self.InversePairsCore(data, copy, start, mid)
+		right = self.InversePairsCore(data, copy, mid + 1, end)
 		
 		count = 0
-		i = start
-		j = mid + 1
-		index = start
-		
-		while i <= mid and j <= end:
-			if data[i] <= data[j]:
-				copy[index] = data[i]
-				i += 1
+		p1 = start
+		p2 = mid + 1
+		indexCopy = start
+		while p1 <= mid and p2 <= end:
+			if data[p1] <= data[p2]:
+				copy[indexCopy] = data[p1]
+				p1 += 1
 			else:
-				copy[index] = data[j]
-				count += mid - i + 1
-				j += 1
-			index += 1
-		while i <= mid:
-			copy[index] = data[i]
-			index += 1
-			i += 1
-		while j <= end:
-			copy[index] = data[j]
-			index += 1
-			j += 1
-		return (left + right + count)
+				copy[indexCopy] = data[p2]
+				count += mid - p1 + 1
+				p2 += 1
+			indexCopy += 1
 		
+		while p1 <= mid:
+			copy[indexCopy] = data[p1]
+			indexCopy += 1
+			p1 += 1
+		
+		while p2 <= end:
+			copy[indexCopy] = data[p2]
+			indexCopy += 1
+			p2 += 1
+		return count + left + right
+	
+s = Solution()
+print(s.InversePairs([364,637,341,406,747,995,234,971,571,219,993,407,416,366,315,301,601,650,418,355,460,505,360,965,516,648,727,667,465,849,455,181,486,149,588,233,144,174,557,67,746,550,474,162,268,142,463,221,882,576,604,739,288,569,256,936,275,401,497,82,935,983,583,523,697,478,147,795,380,973,958,115,773,870,259,655,446,863,735,784,3,671,433,630,425,930,64,266,235,187,284,665,874,80,45,848,38,811,267,575]))
+
+
+
+
+		
+	    
+	
+	
+	
