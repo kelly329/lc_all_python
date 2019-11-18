@@ -20,7 +20,7 @@ def randomized_sort_topk(array, start, end, k):
 		return array[left]
 	else:
 		return randomized_sort_topk(array, left + 1, end, k - (left - start + 1))
-	
+
 def topk(array, start, end, k):
 	k_value = randomized_sort_topk(array, start, end, k)
 	while start < end:
